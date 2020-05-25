@@ -1,4 +1,4 @@
-# starwar
+# Dog-Application
 
 ## Project setup
 ```
