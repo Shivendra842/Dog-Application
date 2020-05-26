@@ -9,7 +9,7 @@
 			fixed
 			srcs
 		>
-			<v-toolbar-title class="for-large-only">Dog-Assignment</v-toolbar-title>
+			<v-toolbar-title class="for-large-only">Pets</v-toolbar-title>
 			<v-spacer></v-spacer>
 			<v-btn class="ma-2" rounded color="purple" to="/" id="listAllBreedsButton">List All Breeds </v-btn>
 			<v-btn class="ma-2" rounded color="purple" to="/searchBreeds"
