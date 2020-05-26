@@ -41,6 +41,7 @@
 					:items="subBreedList"
 					label="Sub-Breed"
 					placeholder="Start typing to Search"
+					no-data-text="No Sub-Breed for selected Breed"
 				></v-autocomplete>
 			</v-col>
 		</v-row>
