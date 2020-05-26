@@ -7,35 +7,33 @@ import Home from '@/views/Home.vue';
 describe('In App Component', () => {
 	let homeWrapper;
 
-
 	beforeEach(() => {
-	//Vue.use(VueRouter);
 		Vue.use(Vuetify);
 		homeWrapper = shallowMount(Home, {
-			Vue,
-		//	router
+			Vue
 		});
-    });
+	});
 
-    afterEach(()=>{
-        homeWrapper.destroy();
-    });
+	afterEach(() => {
+		homeWrapper.destroy();
+	});
 
-    it('is a Vue instance',()=>{
-        expect(homeWrapper.isVueInstance).toBeTruthy();
-    });
+	it('is a Vue instance', () => {
+		expect(homeWrapper.isVueInstance).toBeTruthy();
+	});
 
-    it('it should have a main <div>', () => {
-        expect(homeWrapper.attributes('id')).toBe('Home')
-        
-    });
+	it('it should have a main <div>', () => {
+		expect(homeWrapper.attributes('id')).toBe('Home');
+	});
 
-    describe("it should be a appHeader component", () => {
-        it("it should be a <listAllBreed></listAllBreed>", () => {
-          expect(homeWrapper.html()).toContain("<listallbreed-stub></listallbreed-stub>");
-        });
-        it("it should load the app-header", () => {
-          expect(listAllBreed).toBeTruthy();
-        });
-      });
+	describe('it should be a appHeader component', () => {
+		it('it should be a <listAllBreed></listAllBreed>', () => {
+			expect(homeWrapper.html()).toContain(
+				'<listallbreed-stub></listallbreed-stub>'
+			);
+		});
+		it('it should load the app-header', () => {
+			expect(listAllBreed).toBeTruthy();
+		});
+	});
 });

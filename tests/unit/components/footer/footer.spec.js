@@ -5,14 +5,11 @@ import appFooter from '@/components/footer/footer.vue';
 
 describe('In footer Component', () => {
 	let footerWrapper;
-	//const router = new VueRouter({ path: '/', name: 'Home' });
 
 	beforeEach(() => {
-		//Vue.use(VueRouter);
 		Vue.use(Vuetify);
 		footerWrapper = shallowMount(appFooter, {
 			Vue
-			//router
 		});
 	});
 

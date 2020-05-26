@@ -12,11 +12,7 @@ Vue.use(VueRouter)
     name: 'Home',
     component: Home
   },
-  /*{
-    path:'/listAllBreed',
-    name:'listAllBreed',
-    component:listAllBreed
-  },*/
+
   {
     path:'/searchBreeds',
     name:'searchBreeds',

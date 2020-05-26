@@ -2,19 +2,45 @@ import { shallowMount } from '@vue/test-utils';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import Vuetify from 'vuetify';
-import getMoreImages from '@/components/breedSearch/moreImages/getMoreImages.vue';
 import searchBreeds from '@/components/breedSearch/searchBreeds.vue';
 
 describe('In getMoreImages Component', () => {
 	let searchBreedsWrapper;
 	let store;
-	//const router = new VueRouter({ path: '/', name: 'Home' });
+	let mutations;
+	let getters;
+	let state;
 
 	beforeEach(() => {
 		Vue.use(Vuex);
 		Vue.use(Vuetify);
+		
+		state={
+			listOfAllBreeds:{},
+			selectedBreedName:"",
+			selectedBreedImage:"",
+		 
+		  },
+			mutations={
+				setBreedList:jest.fn(),
+				setSelectedBreedName:jest.fn(),
+				setSelectedBreedImage:jest.fn()
+
+			},
+			getters={
+				listOfAllBreeds:()=>state.listOfAllBreeds,
+				selectedBreedName:()=>state.selectedBreedName,
+				selectedBreedImage:()=>state.selectedBreedImage
+			}
+		
+		store=new Vuex.Store({
+			mutations,
+			getters,state
+		
+		   })
 		searchBreedsWrapper = shallowMount(searchBreeds, {
 			Vue,
+			store,
 			data() {
 				return {
 					toggleSearchOptions: false,
@@ -29,30 +55,6 @@ describe('In getMoreImages Component', () => {
 				};
             },
             
-			methods: {
-				breedName: jest.fn(),
-				breedImage: jest.fn(),
-				listOfAllBreeds: jest.fn(),
-				changeSearchOptions: jest.fn(),
-				showMoreImages: jest.fn(),
-				breedList: jest.fn()
-			}
-			/* 
-            store=new Vuex.store({
-               mutations={
-                    setBreedList:jest.fn(),
-                    setSelectedBreedName:jest.fn(),
-                    setSelectedBreedImage:jest.fn()
-
-                },
-                
-                getters={
-                    listOfAllBreeds:jest.fn(),
-                    selectedBreedName:jest.fn(),
-                    selectedBreedImage:jest.fn()
-                }
-            })*/
-			//router
 		});
 	});
 	afterEach(() => {
@@ -158,20 +160,19 @@ describe('Watcher - selectedBreed', () => {
         });
     });
   });
-/*
+
 it('it should call a function', () => {
-   // searchBreedsWrapper.vm.toggleSearchOptions=true;
     searchBreedsWrapper.vm.changeSearchOptions();
-      expect(searchBreedsWrapper.vm.toggleSearchOptions).toEqual(true);
+	  expect(searchBreedsWrapper.vm.toggleSearchOptions).toEqual(true);
+	  expect(searchBreedsWrapper.vm.filterButtonValue).toEqual('Hide Filters');
   });
-  */
-/*
-it('it should be a the starting row', () => {
-    searchBreedsWrapper.setData({toggleSearchOptions:true})
-    expect(searchBreedsWrapper.find('#row2').html()).toContain(
-        'v-row-stub'
-    );
-});
-*/
+  
+
+  it('it should call a function', () => {
+	 searchBreedsWrapper.vm.showMoreImages();
+	   expect(searchBreedsWrapper.vm.toggleShowMoreImageOption).toEqual(true);
+	   expect(searchBreedsWrapper.vm.moreImagesButtonValue ).toEqual('Hide Image');
+   });
+  
 });
 

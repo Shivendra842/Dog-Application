@@ -86,9 +86,11 @@
 						<v-progress-circular
 							:size="70"
 							:width="7"
-							color="green"
+							color="red"
 							indeterminate
-						></v-progress-circular>
+						>
+						</v-progress-circular> <br>
+						<h1 class="color--text">	Getting The Page Ready ...</h1>
 					</v-row>
 				</v-col>
 			</v-row>
@@ -113,21 +115,18 @@ export default {
 			maxBreedsToDisplay: 10,
 			breedsToDisplay: {},
 			paginationLength: 0,
-			items: [5, 10, 15, 20]
+			items: [5, 10, 15, 20],
 		};
 	},
 	components: {
 		searchBreeds
 	},
 	async created() {
-		console.log('in created()');
 		await this.allBreedsList();
 	},
 	mounted() {
 		setTimeout(() => {
-			console.log('in mounted()');
 			this.getRandomDogImage();
-			// console.log(this.randomDogImage)
 			this.displayNBreeds();
 		}, 3000);
 	},
@@ -135,24 +134,18 @@ export default {
 		async allBreedsList() {
 			listOfAllBreeds().then(response => {
 				this.breedList = response.data.message;
-				//console.log("in then()")
 				this.$store.commit('setBreedList', this.breedList);
 			});
 		},
 		async getRandomDogImage() {
-			console.log('in random dog image');
 			for (var index in this.breedList) {
 				await getNRandomImageByBreed(index, '', 1).then(response => {
 					this.randomDogImage.push(response.data.message[0]);
 				});
 			}
 			this.flag = true;
-			console.log(this.flag);
 		},
 		gotoSearchBreedComponent(breedName, breedImage) {
-			console.log(breedName);
-			console.log(this.breedImage, this.breedName);
-			this.$store.commit('setFlag', this.searchFlag);
 			this.$store.commit('setSelectedBreedName', breedName);
 			this.$store.commit('setSelectedBreedImage', breedImage);
 			this.$router.push('/searchBreeds');
@@ -167,7 +160,6 @@ export default {
 			);
 			let fromBreed = (this.currentPage - 1) * this.maxBreedsToDisplay;
 			let upToBreed = this.currentPage * this.maxBreedsToDisplay - 1;
-			console.log('from:', fromBreed, ' to:', upToBreed);
 			if (allBreedNames.length < upToBreed) {
 				upToBreed = allBreedNames.length - 1;
 			}
@@ -177,7 +169,11 @@ export default {
 					allBreedNames[iterator];
 			}
 			this.breedsToDisplay = breedToDisplay;
-			console.log(Object.keys(this.breedsToDisplay).length);
+		},
+		getColor(){
+			const color=['red','yellow','green','purple']
+			console.log(color[Math.floor(Math.random()*5)])
+			return color[Math.floor(Math.random()*5)];
 		}
 	},
 	watch: {

@@ -48,14 +48,11 @@ export default {
 	},
 
 	created() {
-		console.log('inside created of  getmoreImages');
 		this.getImages();
 	},
 	methods: {
 		getImages() {
 			if (!this.breedName.length) {
-				console.log('null getting called');
-				console.log(this.$store.getters.selectedBreedName);
 				this.breedName = this.$store.getters.selectedBreedName;
 			}
 			getNRandomImageByBreed(this.breedName, this.subBreedName, 20).then(
@@ -67,15 +64,11 @@ export default {
 	},
 	watch: {
 		breedName() {
-			console.log('breedName changed');
 			this.getImages();
 		},
 		subBreedName() {
 			this.getImages();
 		},
-		numberOfImages() {
-			this.getImages();
-		}
 	}
 };
 </script>

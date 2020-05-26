@@ -1,6 +1,5 @@
 <template>
 	<div id="searchBreeds">
-
 		<v-row id="row1">
 			<v-col class="text-center" id="col1">
 				<v-btn
@@ -12,13 +11,22 @@
 					id="showMoreImagesButton"
 					>{{ moreImagesButtonValue }}
 				</v-btn>
-				<v-btn class="ma-2" outlined color="indigo" @click="changeSearchOptions"
-				id="changeSearchOptionsButton"
+				<v-btn
+					class="ma-2"
+					outlined
+					color="indigo"
+					@click="changeSearchOptions"
+					id="changeSearchOptionsButton"
 					>{{ filterButtonValue }}
 				</v-btn>
 			</v-col>
 		</v-row>
-		<v-row v-if="toggleSearchOptions" align="center" justify="center" id="row2">
+		<v-row
+			v-if="toggleSearchOptions"
+			align="center"
+			justify="center"
+			id="row2"
+		>
 			<v-col class="text-center" cols="3">
 				<v-autocomplete
 					v-model="selectedBreed"
@@ -40,12 +48,15 @@
 			<v-row>
 				<v-col class="contain">
 					<v-card max-width="700px" class="detailed-card">
-						<v-img height="100%" align="center" :src="image[0]"> </v-img>
+						<v-img height="100%" align="center" :src="image[0]">
+						</v-img>
 					</v-card>
 				</v-col>
 				<v-col class="contain">
 					<h1 v-if="breedName()">
-						Breed:<span class="text-capitalize"> {{ breedName() }}</span>
+						Breed:<span class="text-capitalize">
+							{{ breedName() }}</span
+						>
 					</h1>
 					<h1 v-if="selectedSubBreed">
 						Sub-Breed:<span class="text-capitalize">
@@ -62,7 +73,6 @@
 				numberOfImages:20
 			/>
 		</div>
-
 	</div>
 </template>
 
@@ -91,7 +101,6 @@ export default {
 
 	created() {
 		this.breedImage();
-		//  this.$store.commit("setFlag",false);
 	},
 	methods: {
 		breedName() {
@@ -101,7 +110,6 @@ export default {
 			} else return this.selectedBreed;
 		},
 		breedImage() {
-			console.log('the breed is ', this.selectedBreed);
 			if (this.selectedBreed.length) {
 				getNRandomImageByBreed(
 					this.selectedBreed,
@@ -109,8 +117,6 @@ export default {
 					1
 				).then(response => {
 					this.image = response.data.message;
-					console.log('getting image for search home page');
-					console.log(this.image);
 				});
 				this.disableShowMoreImages = false;
 				return;
@@ -118,15 +124,13 @@ export default {
 			if (this.$store.getters.selectedBreedImage)
 				this.disableShowMoreImages = false;
 			this.image.push(this.$store.getters.selectedBreedImage);
-			console.log(this.image);
 		},
 		listOfAllBreeds() {
 			return this.$store.getters.listOfAllBreeds;
 		},
 		changeSearchOptions() {
-			
 			this.toggleSearchOptions = !this.toggleSearchOptions;
-			
+
 			this.filterButtonValue = this.toggleSearchOptions
 				? 'Hide Filters'
 				: 'More Filters';
@@ -141,18 +145,6 @@ export default {
 			let obj = this.listOfAllBreeds();
 			let result = Object.keys(obj);
 			return result;
-			//  console.log(result)
-			/* let obj=this.$store.getters.listOfAllBreeds;
-            let result=Object.keys(obj).map(e => {
-                let ret={};
-                console.log(obj[e]);
-                ret[e]=obj[e];
-                return ret;
-            });
-            //this.list=result;
-            //return result
-            return this.$store.getters.listOfAllBreeds
-            */
 		}
 	},
 	watch: {
@@ -162,14 +154,7 @@ export default {
 			for (var iterator in list) {
 				if (iterator == this.selectedBreed) {
 					this.subBreedList = list[iterator];
-					// console.log(list[iterator])
 				}
-				// console.log(iterator,this.selectedBreed)
-				//  console.log(iterator==this.selectedBreed)
-				//  return list[iterator]
-
-				//console.log(list[iterator])
-				//console.log(list.hasOwnProperty(iterator))
 			}
 			this.breedImage();
 		},

@@ -3,17 +3,13 @@ import Vue from 'vue';
 import Vuetify from 'vuetify';
 import appHeader from '@/components/header/header.vue';
 
-
 describe('In footer Component', () => {
 	let headerWrapper;
-	//const router = new VueRouter({ path: '/', name: 'Home' });
 
 	beforeEach(() => {
-		//Vue.use(VueRouter);
 		Vue.use(Vuetify);
 		headerWrapper = shallowMount(appHeader, {
 			Vue
-			//router
 		});
 	});
 
@@ -37,24 +33,30 @@ describe('In footer Component', () => {
 	});
 
 	it('title should have a value', () => {
-		expect(headerWrapper.find('v-toolbar-title-stub').text()).toContain('Dog-Assignment');
-    });
-    
-    it('it should check the existence of listAllBreed button', () => {
-        let listAllBreedButton = headerWrapper.find('#listAllBreedsButton');
-        expect(listAllBreedButton.exists()).toBe(true);
-    });
+		expect(headerWrapper.find('v-toolbar-title-stub').text()).toContain(
+			'Dog-Assignment'
+		);
+	});
 
-    it('it should check the existence of searchBreeds button', () => {
-        let searchBreedButton = headerWrapper.find('#searchBreedsButton');
-        expect(searchBreedButton.exists()).toBe(true);
-    });
+	it('it should check the existence of listAllBreed button', () => {
+		let listAllBreedButton = headerWrapper.find('#listAllBreedsButton');
+		expect(listAllBreedButton.exists()).toBe(true);
+	});
 
-    it('listAllBreed button should have a value', () => {
-		expect(headerWrapper.find('#listAllBreedsButton').text()).toContain('List All Breeds');
-    });
+	it('it should check the existence of searchBreeds button', () => {
+		let searchBreedButton = headerWrapper.find('#searchBreedsButton');
+		expect(searchBreedButton.exists()).toBe(true);
+	});
 
-    it('searchBreeds button should have a value', () => {
-		expect(headerWrapper.find('#searchBreedsButton').text()).toContain('Search Breeds');
-    });
+	it('listAllBreed button should have a value', () => {
+		expect(headerWrapper.find('#listAllBreedsButton').text()).toContain(
+			'List All Breeds'
+		);
+	});
+
+	it('searchBreeds button should have a value', () => {
+		expect(headerWrapper.find('#searchBreedsButton').text()).toContain(
+			'Search Breeds'
+		);
+	});
 });
