@@ -37,4 +37,5 @@ filter. More images of a selected breed and respective sub-breeds can be viewed.
 The project has 3 functionality..
 1) Show all breeds on home page, Any breed can be selected for more options.
 2) Breeds can be searched in the searchBreeds option, additional sub-breeds filter can be used.
-3) More images can be viewed for any breed or sub-breed.
+3) Other Breeds can be searched from the same filter option by selecting different breed and sub-breed.
+4) More images can be viewed for any breed or sub-breed.
