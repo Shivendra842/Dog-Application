@@ -34,7 +34,7 @@ describe('In footer Component', () => {
 
 	it('title should have a value', () => {
 		expect(headerWrapper.find('v-toolbar-title-stub').text()).toContain(
-			'Dog-Assignment'
+			'Pets'
 		);
 	});
 
